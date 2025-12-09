@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="../D2DWindow/D2DWindow.csproj" />
+  <Project Path="../Pixi2D/Pixi2D.csproj" />
   <Project Path="XeHttpTool/XeHttpTool.csproj" />
 </Solution>

@@ -3,11 +3,7 @@ using Pixi2D.Core;
 using Pixi2D.Extensions;
 using SharpDX.Direct2D1;
 using System.Drawing;
-using System.Net;
-using System.Text.Json;
-using System.Threading.Tasks;
 using XeHttpTool.Model;
-using XeHttpTool.Tools;
 
 namespace XeHttpTool.UI;
 

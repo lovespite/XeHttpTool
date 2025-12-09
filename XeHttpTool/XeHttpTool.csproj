@@ -13,4 +13,9 @@
     <PackageReference Include="Microsoft.ClearScript.Complete" Version="7.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\D2DWindow\D2DWindow.csproj" />
+    <ProjectReference Include="..\..\Pixi2D\Pixi2D.csproj" />
+  </ItemGroup>
+
 </Project>

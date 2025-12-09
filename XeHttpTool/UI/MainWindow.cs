@@ -150,7 +150,7 @@ internal class MainWindow : Direct2D1Window
 
     private async void Btn1_OnButtonClick(Pixi2D.Controls.Button obj)
     {
-        //var ws = XeWorkspace.Create("test", "D:\\teset.xeworkspace.json");
+        //var ws = await XeWorkspace.CreateAsync("test", "D:\\teset.xeworkspace.json");
         //ws.Collections = [
         //    new XeCollection {
         //        Name = "c1",

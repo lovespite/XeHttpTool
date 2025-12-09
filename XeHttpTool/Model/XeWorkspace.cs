@@ -27,7 +27,6 @@ internal class XeWorkspace : XeNamedEntity
         {
             m_Collections.Clear();
             m_Collections.AddRange(value);
-            foreach (var item in m_Collections) item.Workspace = this;
         }
     }
 
@@ -43,7 +42,11 @@ internal class XeWorkspace : XeNamedEntity
 
     public XeCollection NewCollection(string name)
     {
-        var collection = new XeCollection(this) { Name = name };
+        var collection = new XeCollection()
+        {
+            Name = name,
+            Id = Guid.NewGuid().ToString("N"),
+        };
         Collections.Add(collection);
         return collection;
     }
@@ -59,22 +62,6 @@ internal class XeWorkspace : XeNamedEntity
         if (!string.IsNullOrWhiteSpace(saveTo))
         {
             await workspace.SaveToAsync(saveTo);
-            workspace.SourceFilePath = saveTo;
-        }
-
-        return workspace;
-    }
-
-    public static XeWorkspace Create(string name, string? saveTo = null)
-    {
-        var workspace = new XeWorkspace
-        {
-            Name = name,
-            Id = Guid.NewGuid().ToString("N"),
-        };
-        if (!string.IsNullOrWhiteSpace(saveTo))
-        {
-            workspace.SaveTo(saveTo);
             workspace.SourceFilePath = saveTo;
         }
 

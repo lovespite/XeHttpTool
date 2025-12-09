@@ -2,10 +2,10 @@
 
 namespace XeHttpTool.Model;
 
-internal class XeRequest : XeNamedEntity
+internal class XeRequest() : XeNamedEntity
 {
-    [JsonIgnore] public XeCollection? Collection { get; set; }
 
+    public string Id { get; set; } = string.Empty;
     public string Method { get; set; } = Methods.Get;
     public string Url { get; set; } = string.Empty;
     public XeScripts Scripts { get; set; } = new();
@@ -19,7 +19,7 @@ internal class XeRequest : XeNamedEntity
 
     public XeRequest Copy()
     {
-        return new XeRequest
+        return new XeRequest()
         {
             Name = Name,
             Method = Method,

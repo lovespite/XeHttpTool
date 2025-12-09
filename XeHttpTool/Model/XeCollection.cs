@@ -4,7 +4,6 @@ namespace XeHttpTool.Model;
 
 internal class XeCollection() : XeNamedEntity
 {
-    [JsonIgnore] public XeWorkspace? Workspace { get; set; }
 
     private readonly List<XeRequest> m_Requests = [];
 
@@ -15,22 +14,21 @@ internal class XeCollection() : XeNamedEntity
         {
             m_Requests.Clear();
             m_Requests.AddRange(value);
-            foreach (var item in m_Requests) item.Collection = this;
         }
     }
 
-    public XeRequest NewRequest(string name)
-    {
-        var request = new XeRequest { Name = name, Collection = this };
-        Requests.Add(request);
-        return request;
-    }
-
+    public string Id { get; set; } = string.Empty;
     public XeEnvironment Environment { get; set; } = new();
 
-    public XeCollection(XeWorkspace workspace) : this()
+    public XeRequest NewRequest(string name)
     {
-        Workspace = workspace;
+        var request = new XeRequest()
+        {
+            Name = name,
+            Id = Guid.NewGuid().ToString("N"),
+        };
+        Requests.Add(request);
+        return request;
     }
 
     public override string ToString()
@@ -40,13 +38,13 @@ internal class XeCollection() : XeNamedEntity
 
     public XeCollection Copy()
     {
-        var copy = new XeCollection
+        var copy = new XeCollection()
         {
             Name = Name + " copy",
             Description = Description,
-            Environment = Environment.Copy()
-        };
-        foreach (var request in Requests) copy.Requests.Add(request.Copy());
+            Environment = Environment.Copy(),
+            Requests = Requests.ConvertAll(r => r.Copy()),
+        }; 
         return copy;
     }
 }
